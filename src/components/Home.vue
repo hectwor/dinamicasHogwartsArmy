@@ -154,11 +154,11 @@
 </template>
 
 <script>
-import personajes from '../data/personajes'
-import ciudadesPaises from '../data/ciudadesPaises'
-import hechizosJSON from '../data/hechizos'
-import criaturasJSON from '../data/criaturas'
-import emoticonesJSON from '../data/emoticones'
+import personajes from '../data/Personajes'
+import ciudadesPaises from '../data/CiudadesPaises'
+import hechizosJSON from '../data/Hechizos'
+import criaturasJSON from '../data/Criaturas'
+import emoticonesJSON from '../data/Emoticones'
 
 export default {
     name: 'Home',
