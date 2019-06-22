@@ -23,8 +23,8 @@
                         <b-list-group-item button v-on:click="abrirDinamica('acrosticoMagico')">ACRÓSTICO MÁGICO</b-list-group-item>
                         <b-list-group-item button v-on:click="abrirDinamica('yElEmoticon')">¿Y EL EMOTICON?</b-list-group-item>
                         <b-list-group-item button v-on:click="abrirDinamica('dinamicaAhorcados')">DINÁMICA AHORCADOS</b-list-group-item>
-                        <!--<b-list-group-item button v-on:click="abrirDinamica('abcMagico')">"ABC" Mágico</b-list-group-item>    
-                        <b-list-group-item button v-on:click="abrirDinamica('noEsta')">NO ESTÁ</b-list-group-item>-->                             
+                        <b-list-group-item button v-on:click="abrirDinamica('escaleraMagica')">ESCALERA MÁGICA</b-list-group-item>    
+                        <!--b-list-group-item button v-on:click="abrirDinamica('noEsta')">NO ESTÁ</b-list-group-item>-->                             
                     </b-list-group>
                 </b-col>
                 <b-col cols="3">
@@ -149,8 +149,28 @@
             </div>
             <b-button class="mt-3" variant="outline-info" block @click="copiarAlPortapeles('dinamicaAhorcadosExit')">Copiar al Portapapeles</b-button>
             <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Cerrar</b-button>
-        </b-modal>        
+        </b-modal>    
+        <b-modal ref="modalEscaleraMagica" hide-footer title="Escalera Mágica">
+            <div class="d-block text-center">
+                <b-form-input
+                    id="palabraEscaleraMagica"
+                    v-model="escaleraMagica.entradaTexto"
+                    placeholder="Entrada de texto"
+                    v-on:keyup.enter="realizarEscaleraMagica"
+                    v-on:keyup="mayus('escaleraMagica')"
+                    autocomplete="off"
+                ></b-form-input>
+                <b-form-textarea
+                    id="escaleraMagicaExit"
+                    plaintext :value="escaleraMagicaHTML"
+                    rows="3"
+                ></b-form-textarea>
+            </div>
+            <b-button class="mt-3" variant="outline-info" block @click="copiarAlPortapeles('escaleraMagicaExit')">Copiar al Portapapeles</b-button>
+            <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Cerrar</b-button>
+        </b-modal>    
     </div>
+    
 </template>
 
 <script>
@@ -188,11 +208,16 @@ export default {
             entradaPrimero:'',
             entradaSegundo:''
         },
+        escaleraMagica:{
+            entradaPrimero:'',
+            entradaSegundo:''
+        },
         acrosticoCruzadoHTML: ``,
         stopHTML: ``,
         acrosticoMagicoHTML: ``,
         yElEmoticonHTML: ``,
         dinamicaAhorcadosHTML:``,
+        escaleraMagicaHTML:``,
         distintivo:''
         }
   },
@@ -375,6 +400,20 @@ export default {
               this.dinamicaAhorcadosHTML = this.dinamicaAhorcadosHTML + e.nombre + ' ' + e.apellido +`\n`;
           })
       },
+      realizarEscaleraMagica(){
+          let caracteres = this.escaleraMagica.entradaTexto.split("");
+          let entrada = this.escaleraMagica.entradaTexto;
+          let salida;
+          this.escaleraMagicaHTML= this.distintivo+'\n';
+          while(entrada.length > 0){
+              this.escaleraMagicaHTML= this.escaleraMagicaHTML + entrada + '\n';
+              if(entrada.charAt(entrada.length-2)=== ' '){
+                entrada = entrada.slice(0,-2);
+              }else{
+                entrada = entrada.slice(0,-1);
+              }
+          }
+      },
       abrirDinamica (tipo){
             console.log(tipo)
             this.showModal(tipo);
@@ -393,8 +432,8 @@ export default {
                 case 'yElEmoticon':
                     this.$refs['modalYElEmoticon'].show()
                     break;
-                case 'dinamicaAhorcados':
-                    this.$refs['modalDinamicaAhorcados'].show()
+                case 'escaleraMagica':
+                    this.$refs['modalEscaleraMagica'].show()
                     break;
           }
       },
@@ -403,11 +442,12 @@ export default {
         this.$refs['modalStop'].hide()
         this.$refs['modalAcrosticoMagico'].hide()
         this.$refs['modalYElEmoticon'].hide()
-        this.$refs['modalDinamicaAhorcados'].hide()
+        this.$refs['modalEscaleraMagica'].hide()
         this.acrosticoCruzado.entradaTexto='';
         this.stop.entradaTexto='';
         this.acrosticoMagico.entradaTexto = '';
         this.yElEmoticon.entradaTexto = '';
+        this.escaleraMagica.entradaTexto = '';
       },
       guardarDistintivo(){
 
@@ -468,6 +508,9 @@ export default {
                 let sinTildes = caracteres.toString().replace(/,/g, '');
                 this.yElEmoticon.entradaTexto = sinTildes;
                 this.realizarYElEmoticon();
+            }
+            if(id="escaleraMagica"){
+                this.realizarEscaleraMagica();
             }
         }
   }
