@@ -175,10 +175,16 @@ export default {
                     if(this.ganador.gryff === '🥈'){
                         segundo = 'Gryffindor'
                     }
+                    if(this.ganador.gryff === '🥇🥈'){
+                        segundo = 'Gryffindor'
+                    }
                     if(this.ganador.raven === '🥇'){
                         primero = 'Ravenclaw'
                     }
                     if(this.ganador.raven === '🥈'){
+                        segundo = 'Ravenclaw'
+                    }
+                    if(this.ganador.raven === '🥇🥈'){
                         segundo = 'Ravenclaw'
                     }
                     if(this.ganador.sly === '🥇'){
@@ -187,10 +193,16 @@ export default {
                     if(this.ganador.sly === '🥈'){
                         segundo = 'Slytherin'
                     }
+                    if(this.ganador.sly === '🥇🥈'){
+                        segundo = 'Slytherin'
+                    }
                     if(this.ganador.huff === '🥇'){
                         primero = 'Hufflepuff'
                     }
                     if(this.ganador.huff === '🥈'){
+                        segundo = 'Hufflepuff'
+                    }
+                    if(this.ganador.huff === '🥇🥈'){
                         segundo = 'Hufflepuff'
                     }
                     this.rondasPuntos.pop();
@@ -307,6 +319,9 @@ export default {
                 if(this.ronda.huff === 0 && this.ronda.sly === 0 && this.ronda.raven === 0){
                     this.ganador.gryff = '🥇'
                 }
+                if(this.ronda.huff === 0 && this.ronda.sly === 0 && this.ronda.raven === 0 && this.ronda.gryff === 1){
+                    this.ganador.gryff = '🥇🥈'
+                }
                 this.ronda.gryff++;
             }
         },
@@ -321,6 +336,9 @@ export default {
                 }
                 if(this.ronda.huff === 0 && this.ronda.sly === 0 && this.ronda.gryff === 0){
                     this.ganador.raven = '🥇'
+                }
+                if(this.ronda.huff === 0 && this.ronda.sly === 0 && this.ronda.raven === 0 && this.ronda.raven === 1){
+                    this.ganador.raven = '🥇🥈'
                 }
                 this.ronda.raven++;      
             }
@@ -337,6 +355,9 @@ export default {
                 if(this.ronda.huff === 0 && this.ronda.raven === 0 && this.ronda.gryff === 0){
                     this.ganador.sly = '🥇'
                 }
+                if(this.ronda.huff === 0 && this.ronda.sly === 0 && this.ronda.raven === 0 && this.ronda.sly === 1){
+                    this.ganador.sly = '🥇🥈'
+                }
                 this.ronda.sly++;  
             }
         },
@@ -351,6 +372,9 @@ export default {
                 }
                 if(this.ronda.sly === 0 && this.ronda.raven === 0 && this.ronda.gryff === 0){
                     this.ganador.huff = '🥇'
+                }
+                if(this.ronda.huff === 0 && this.ronda.sly === 0 && this.ronda.raven === 0 && this.ronda.huff === 1){
+                    this.ganador.huff = '🥇🥈'
                 }
                 this.ronda.huff++;  
             }
