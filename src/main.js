@@ -9,8 +9,8 @@ Vue.config.productionTip = false
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/dinamicas', component: App },
-  { path: '/', component: Contar }
+  { path: '/', component: App },
+  { path: '/dinamicas', component: Contar }
 ]
 
 const router = new VueRouter({
