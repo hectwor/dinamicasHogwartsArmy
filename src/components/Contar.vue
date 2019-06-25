@@ -4,10 +4,10 @@
         <h2>{{ title }}</h2>
         <b-container>
             <b-row>
-                <b-col cols="2">
+                <b-col cols="1">
                     
                 </b-col>
-                <b-col cols="8">
+                <b-col cols="10">
                     <div>
                         <b-container>
                             <b-row>
@@ -113,7 +113,7 @@
                     <h4>Resumen</h4>
                     <b-table striped hover :items="rondasPuntos"></b-table>
                 </b-col>
-                <b-col cols="2">
+                <b-col cols="1">
                     
                 </b-col>
             </b-row>
@@ -341,7 +341,7 @@ export default {
                 if(this.ronda.huff === 0 && this.ronda.sly === 0 && this.ronda.gryff === 0){
                     this.ganador.raven = '🥇'
                 }
-                if(this.ronda.huff === 0 && this.ronda.sly === 0 && this.ronda.raven === 0 && this.ronda.raven === 1){
+                if(this.ronda.huff === 0 && this.ronda.sly === 0 && this.ronda.gryff === 0 && this.ronda.raven === 1){
                     this.ganador.raven = '🥇🥈'
                 }
                 this.ronda.raven++;      
@@ -359,7 +359,7 @@ export default {
                 if(this.ronda.huff === 0 && this.ronda.raven === 0 && this.ronda.gryff === 0){
                     this.ganador.sly = '🥇'
                 }
-                if(this.ronda.huff === 0 && this.ronda.sly === 0 && this.ronda.raven === 0 && this.ronda.sly === 1){
+                if(this.ronda.huff === 0 && this.ronda.gryff === 0 && this.ronda.raven === 0 && this.ronda.sly === 1){
                     this.ganador.sly = '🥇🥈'
                 }
                 this.ronda.sly++;  
@@ -377,7 +377,7 @@ export default {
                 if(this.ronda.sly === 0 && this.ronda.raven === 0 && this.ronda.gryff === 0){
                     this.ganador.huff = '🥇'
                 }
-                if(this.ronda.huff === 0 && this.ronda.sly === 0 && this.ronda.raven === 0 && this.ronda.huff === 1){
+                if(this.ronda.gryff === 0 && this.ronda.sly === 0 && this.ronda.raven === 0 && this.ronda.huff === 1){
                     this.ganador.huff = '🥇🥈'
                 }
                 this.ronda.huff++;  
