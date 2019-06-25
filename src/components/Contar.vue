@@ -176,6 +176,7 @@ export default {
                         segundo = 'Gryffindor'
                     }
                     if(this.ganador.gryff === '🥇🥈'){
+                        primero = 'Gryffindor'
                         segundo = 'Gryffindor'
                     }
                     if(this.ganador.raven === '🥇'){
@@ -185,6 +186,7 @@ export default {
                         segundo = 'Ravenclaw'
                     }
                     if(this.ganador.raven === '🥇🥈'){
+                        primero = 'Ravenclaw'
                         segundo = 'Ravenclaw'
                     }
                     if(this.ganador.sly === '🥇'){
@@ -194,6 +196,7 @@ export default {
                         segundo = 'Slytherin'
                     }
                     if(this.ganador.sly === '🥇🥈'){
+                        primero = 'Slytherin'
                         segundo = 'Slytherin'
                     }
                     if(this.ganador.huff === '🥇'){
@@ -203,6 +206,7 @@ export default {
                         segundo = 'Hufflepuff'
                     }
                     if(this.ganador.huff === '🥇🥈'){
+                        primero = 'Hufflepuff'
                         segundo = 'Hufflepuff'
                     }
                     this.rondasPuntos.pop();
@@ -393,6 +397,12 @@ export default {
                         if(this.ganador.sly=== '🥉') this.ganador.sly = '🥈';
                         if(this.ganador.huff=== '🥉') this.ganador.huff = '🥈';
                     }
+                    if(this.ganador.gryff === '🥇🥈'){
+                        if(this.ganador.raven=== '🥉') this.ganador.raven = '🥈';
+                        if(this.ganador.sly=== '🥉') this.ganador.sly = '🥈';
+                        if(this.ganador.huff=== '🥉') this.ganador.huff = '🥈';
+                        this.ganador.gryff = '🥇'
+                    }
                 }
                 if(this.ronda.gryff === 0){
                     this.ganador.gryff = ''
@@ -409,6 +419,11 @@ export default {
                         if(this.ganador.huff=== '🥈') this.ganador.huff = '🥇';
                     }
                     if(this.ganador.raven === '🥈'){
+                        if(this.ganador.gryff=== '🥉') this.ganador.gryff = '🥈';
+                        if(this.ganador.sly=== '🥉') this.ganador.sly = '🥈';
+                        if(this.ganador.huff=== '🥉') this.ganador.huff = '🥈';
+                    }
+                    if(this.ganador.raven === '🥇🥈'){
                         if(this.ganador.gryff=== '🥉') this.ganador.gryff = '🥈';
                         if(this.ganador.sly=== '🥉') this.ganador.sly = '🥈';
                         if(this.ganador.huff=== '🥉') this.ganador.huff = '🥈';
@@ -433,6 +448,11 @@ export default {
                         if(this.ganador.raven=== '🥉') this.ganador.raven = '🥈';
                         if(this.ganador.huff=== '🥉') this.ganador.huff = '🥈';
                     }
+                    if(this.ganador.sly === '🥇🥈'){
+                        if(this.ganador.gryff=== '🥉') this.ganador.gryff = '🥈';
+                        if(this.ganador.raven=== '🥉') this.ganador.raven = '🥈';
+                        if(this.ganador.huff=== '🥉') this.ganador.huff = '🥈';
+                    }
                 } 
                 if(this.ronda.sly === 0){
                     this.ganador.sly = ''
@@ -449,6 +469,11 @@ export default {
                         if(this.ganador.sly=== '🥈') this.ganador.sly = '🥇';
                     }
                     if(this.ganador.huff === '🥈'){
+                        if(this.ganador.gryff=== '🥉') this.ganador.gryff = '🥈';
+                        if(this.ganador.raven=== '🥉') this.ganador.raven = '🥈';
+                        if(this.ganador.sly=== '🥉') this.ganador.sly = '🥈';
+                    }
+                    if(this.ganador.huff === '🥇🥈'){
                         if(this.ganador.gryff=== '🥉') this.ganador.gryff = '🥈';
                         if(this.ganador.raven=== '🥉') this.ganador.raven = '🥈';
                         if(this.ganador.sly=== '🥉') this.ganador.sly = '🥈';
