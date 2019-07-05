@@ -396,9 +396,13 @@ export default {
                   }
               }
           });
-          salida.forEach(e =>{
-              this.dinamicaAhorcadosHTML = this.dinamicaAhorcadosHTML + e.nombre + ' ' + e.apellido +`\n`;
-          })
+          if(salida.length === 0){
+            this.dinamicaAhorcadosHTML = this.dinamicaAhorcadosHTML + "No se encontraron resultados";
+          }else{
+            salida.forEach(e =>{
+                        this.dinamicaAhorcadosHTML = this.dinamicaAhorcadosHTML + e.nombre + ' ' + e.apellido +`\n`;
+            })
+          }
       },
       realizarEscaleraMagica(){
           let caracteres = this.escaleraMagica.entradaTexto.split("");
