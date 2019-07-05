@@ -435,6 +435,9 @@ export default {
                 case 'escaleraMagica':
                     this.$refs['modalEscaleraMagica'].show()
                     break;
+                case 'dinamicaAhorcados':
+                    this.$refs['modalDinamicaAhorcados'].show()
+                    break;
           }
       },
       hideModal() {
@@ -443,11 +446,14 @@ export default {
         this.$refs['modalAcrosticoMagico'].hide()
         this.$refs['modalYElEmoticon'].hide()
         this.$refs['modalEscaleraMagica'].hide()
+        this.$refs['modalDinamicaAhorcados'].hide()
         this.acrosticoCruzado.entradaTexto='';
         this.stop.entradaTexto='';
         this.acrosticoMagico.entradaTexto = '';
         this.yElEmoticon.entradaTexto = '';
         this.escaleraMagica.entradaTexto = '';
+        this.dinamicaAhorcados.entradaPrimero = ''
+        this.dinamicaAhorcados.entradaSegundo = ''
       },
       guardarDistintivo(){
 
