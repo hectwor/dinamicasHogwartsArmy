@@ -2,11 +2,14 @@
   <div id="app">
       <img id = "logo" src="./assets/Hogwartscrest.png">
     <Home/>
+    <br/>
+    <Contar/>
   </div>
 </template>
 
 <script>
 import Home from './components/Home'
+import Contar from './components/Contar'
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 
@@ -18,7 +21,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 export default {
   name: 'App',
   components: {
-    Home
+    Home,
+    Contar
   }
 }
 </script>

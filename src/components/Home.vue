@@ -24,7 +24,7 @@
                         <b-list-group-item button v-on:click="abrirDinamica('yElEmoticon')">¿Y EL EMOTICON?</b-list-group-item>
                         <b-list-group-item button v-on:click="abrirDinamica('dinamicaAhorcados')">DINÁMICA AHORCADOS</b-list-group-item>
                         <b-list-group-item button v-on:click="abrirDinamica('escaleraMagica')">ESCALERA MÁGICA</b-list-group-item>    
-                        <!--b-list-group-item button v-on:click="abrirDinamica('noEsta')">NO ESTÁ</b-list-group-item>-->                             
+                        <b-list-group-item button v-on:click="abrirDinamica('parsel')">PARSEL</b-list-group-item>                             
                     </b-list-group>
                 </b-col>
                 <b-col cols="3">
@@ -169,6 +169,25 @@
             <b-button class="mt-3" variant="outline-info" block @click="copiarAlPortapeles('escaleraMagicaExit')">Copiar al Portapapeles</b-button>
             <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Cerrar</b-button>
         </b-modal>    
+        <b-modal ref="modalParsel" hide-footer title="Parsel">
+            <div class="d-block text-center">
+                <b-form-input
+                    id="palabrasParsel"
+                    v-model="parsel.entradaTexto"
+                    placeholder="Entrada de texto"
+                    v-on:keyup.enter="realizarParsel"
+                    v-on:keyup="mayus('parsel')"
+                    autocomplete="off"
+                ></b-form-input>
+                <b-form-textarea
+                    id="parselExit"
+                    plaintext :value="parselHTML"
+                    rows="3"
+                ></b-form-textarea>
+            </div>
+            <b-button class="mt-3" variant="outline-info" block @click="copiarAlPortapeles('parselExit')">Copiar al Portapapeles</b-button>
+            <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Cerrar</b-button>
+        </b-modal>    
     </div>
     
 </template>
@@ -179,6 +198,7 @@ import ciudadesPaises from '../data/CiudadesPaises'
 import hechizosJSON from '../data/Hechizos'
 import criaturasJSON from '../data/Criaturas'
 import emoticonesJSON from '../data/Emoticones'
+import abecedariosParselJSON from '../data/Abecedario'
 
 export default {
     name: 'Home',
@@ -209,8 +229,10 @@ export default {
             entradaSegundo:''
         },
         escaleraMagica:{
-            entradaPrimero:'',
-            entradaSegundo:''
+            entradaPrimero:''
+        },
+        parsel:{
+            entradaTexto:''
         },
         acrosticoCruzadoHTML: ``,
         stopHTML: ``,
@@ -218,6 +240,7 @@ export default {
         yElEmoticonHTML: ``,
         dinamicaAhorcadosHTML:``,
         escaleraMagicaHTML:``,
+        parselHTML:``,
         distintivo:''
         }
   },
@@ -418,6 +441,24 @@ export default {
               }
           }
       },
+      realizarParsel(){
+        let caracteres = this.parsel.entradaTexto.split("");
+        console.log(caracteres)
+        let entrada = this.parsel.entradaTexto;
+        this.parselHTML= this.distintivo+'\n';
+        let salida ="";
+        for(let i = 0;i<caracteres.length;i++){
+            abecedariosParselJSON.forEach(letra=>{
+                if(caracteres[i] === letra.letra){
+                    salida += letra.traduccion;
+                }
+            });
+            if(caracteres[i] === " "){
+                    salida += " ";
+                }
+        }
+        this.parselHTML += salida;
+      },
       abrirDinamica (tipo){
             console.log(tipo)
             this.showModal(tipo);
@@ -442,6 +483,9 @@ export default {
                 case 'dinamicaAhorcados':
                     this.$refs['modalDinamicaAhorcados'].show()
                     break;
+                case 'parsel':
+                    this.$refs['modalParsel'].show()
+                    break;
           }
       },
       hideModal() {
@@ -451,6 +495,7 @@ export default {
         this.$refs['modalYElEmoticon'].hide()
         this.$refs['modalEscaleraMagica'].hide()
         this.$refs['modalDinamicaAhorcados'].hide()
+        this.$refs['modalParsel'].hide()
         this.acrosticoCruzado.entradaTexto='';
         this.stop.entradaTexto='';
         this.acrosticoMagico.entradaTexto = '';
@@ -458,6 +503,7 @@ export default {
         this.escaleraMagica.entradaTexto = '';
         this.dinamicaAhorcados.entradaPrimero = ''
         this.dinamicaAhorcados.entradaSegundo = ''
+        this.parsel.entradaTexto = '';
       },
       guardarDistintivo(){
 
@@ -519,8 +565,32 @@ export default {
                 this.yElEmoticon.entradaTexto = sinTildes;
                 this.realizarYElEmoticon();
             }
-            if(id="escaleraMagica"){
+            if(id==="escaleraMagica"){
                 this.realizarEscaleraMagica();
+            }
+            if(id==="parsel"){
+                this.parsel.entradaTexto = this.parsel.entradaTexto.toUpperCase();
+                let caracteres = this.parsel.entradaTexto.split("");
+                for(let i=0;i<caracteres.length;i++){
+                    if(caracteres[i]=== 'Á'){
+                        caracteres[i] = 'A';
+                    }
+                    if(caracteres[i]=== 'É'){
+                        caracteres[i] = 'E';
+                    }
+                    if(caracteres[i]=== 'Í'){
+                        caracteres[i] = 'I';
+                    }
+                    if(caracteres[i]=== 'Ó'){
+                        caracteres[i] = 'O';
+                    }
+                    if(caracteres[i]=== 'Ú'){
+                        caracteres[i] = 'U';
+                    }
+                }
+                let sinTildes = caracteres.toString().replace(/,/g, '');
+                this.parsel.entradaTexto = sinTildes;
+                this.realizarParsel();
             }
         }
   }
